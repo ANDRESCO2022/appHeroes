@@ -11,9 +11,8 @@ export const MarvelPage = () => {
 
 	const getHeroes = async () => {
 		try {
-			const response = await heroApi.get('/superheroes.json');
+			const response = await heroApi.get('');
 			setGetHero(response.data.filter((item) => item.tipo !== 'heroes-dc'));
-			console.log(getHero);
 		} catch (error) {
 			console.log(error);
 		}

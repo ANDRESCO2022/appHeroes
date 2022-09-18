@@ -13,7 +13,7 @@ export const DcPage = () => {
 		try {
 			const response = await heroApi.get('/superheroes.json');
 			setGetHeros(response.data.filter((item) => item.tipo !== 'heroes-marvel'));
-			console.log(getHero);
+			
 		} catch (error) {
 			console.log(error);
 		}
