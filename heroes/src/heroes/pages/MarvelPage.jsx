@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import heroApi from '../../api/HeroesApi';
 import { Link } from 'react-router-dom';
 import { Loader } from '../components/Loader';
+import { superheroes } from '../../api/api';
 
 export const MarvelPage = () => {
 	const [getHero, setGetHero] = useState([]);
@@ -11,8 +12,8 @@ export const MarvelPage = () => {
 
 	const getHeroes = async () => {
 		try {
-			const response = await heroApi.get('');
-			setGetHero(response.data.filter((item) => item.tipo !== 'heroes-dc'));
+			const response = await superheroes;
+			setGetHero(response.filter((item) => item.tipo !== 'heroes-dc'));		
 		} catch (error) {
 			console.log(error);
 		}
@@ -28,7 +29,7 @@ export const MarvelPage = () => {
 		<>
 			<h1 className="text-center font-bold text-6xl uppercase m-4">
 				<span className="text-blue-500  break-words ">top 20</span>
-				Mejores Héroes <span className="text-blue-500 mt-3 ">Marvel 20</span>
+				Mejores Héroes <span className="text-blue-500 mt-3 ">Marvel </span>
 			</h1>
 			<div className="grid sm:grid-cols-4 gap-4">
 				{getHero.map((hero) => (

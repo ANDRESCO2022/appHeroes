@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import heroApi from '../../api/HeroesApi';
+import { superheroes } from '../../api/api';
 
 export const HeroPage = () => {
 	const [getHeroId, setGetHeroId] = useState([]);
@@ -9,25 +10,27 @@ export const HeroPage = () => {
 	const backPage = () => {
 		navigate(-1);
 	};
-
+	
 	useEffect(() => {
 		getHerosById();
 	}, []);
-
-	const getHerosById = async () => {
+	
+	console.log(heroId);
+	const getHerosById =  () => {
 		try {
-			const response = await heroApi.get('');
-			setGetHeroId(response.data.filter((item) => item.id === heroId));
+			const response =  superheroes;
+			setGetHeroId(response.filter((item) => item.id === heroId));
+			console.log(response);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	console.log(getHeroId[0].nombre);
+	console.log(getHeroId[item.id].nombre);
 
 	return (
 		<>
-			<div key={getHeroId.id} className="w-1/1 grid sm:grid-cols-2 rounded-2xl shadow-2xl bg-gray-900 m-8  animate__animated  animate__fadeInUp">
-				<img src={getHeroId[0].imagen} alt={getHeroId[0].nombre} className="w-full rounded-l-2xl" />
+			<div key={getHeroId[item.id].id} className="w-1/1 grid sm:grid-cols-2 rounded-2xl shadow-2xl bg-gray-900 m-8  animate__animated  animate__fadeInUp">
+				<img src={getHeroId[item.id].imagen} alt={getHeroId[item.id].nombre} className="w-full rounded-l-2xl" />
 				<div className="px-6 py-4">
 					<div className="text-xl mb-2">
 						Nombre
